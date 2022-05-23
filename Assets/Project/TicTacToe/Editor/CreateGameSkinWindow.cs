@@ -1,5 +1,8 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Windows;
 
 namespace Project.TicTacToe.Editor
 {
@@ -31,10 +34,17 @@ namespace Project.TicTacToe.Editor
 
         private void BuildBundle(string name, Sprite xSprite, Sprite oSprite, Sprite backgroundSprite)
         {
+            var buildTarget = EditorUserBuildSettings.activeBuildTarget;
             AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(xSprite)).SetAssetBundleNameAndVariant(name, "xSprite");
             AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(oSprite)).SetAssetBundleNameAndVariant(name, "oSprite");
             AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(backgroundSprite)).SetAssetBundleNameAndVariant(name, "backgroundSprite");
-            // BuildPipeline ??
+            var streamingAssetsPath = $"Assets/StreamingAssets";
+            if (!Directory.Exists(Application.streamingAssetsPath))
+            {
+                Directory.CreateDirectory(streamingAssetsPath);
+            }
+            BuildPipeline.BuildAssetBundles(streamingAssetsPath, BuildAssetBundleOptions.None,
+                buildTarget);
         }
 
         private Sprite CreateSpritePicker(string labelText, Sprite currentValue)
@@ -43,3 +53,5 @@ namespace Project.TicTacToe.Editor
         }
     }
 }
+
+#endif

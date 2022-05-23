@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿#if UNITY_EDITOR
+
+using System.Linq;
 using JCI.Core.Extensions;
 using JCI.Core.Inspector;
 using UnityEngine;
 using UnityEditor;
 
-namespace RK.Core.Editor
+namespace JCI.Core.Editor
 {
     [CustomPropertyDrawer(typeof(StringInList))]
     public class StringInListDrawer : PropertyDrawer
@@ -43,5 +45,6 @@ namespace RK.Core.Editor
             }                      
         }
     }
-
 }
+
+#endif
