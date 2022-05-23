@@ -38,12 +38,20 @@ namespace Project.TicTacToe.Editor
             AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(xSprite)).SetAssetBundleNameAndVariant(name, "xSprite");
             AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(oSprite)).SetAssetBundleNameAndVariant(name, "oSprite");
             AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(backgroundSprite)).SetAssetBundleNameAndVariant(name, "backgroundSprite");
-            var streamingAssetsPath = $"Assets/StreamingAssets";
+            var streamingAssetsPath = "Assets/StreamingAssets";
             if (!Directory.Exists(Application.streamingAssetsPath))
             {
                 Directory.CreateDirectory(streamingAssetsPath);
             }
-            BuildPipeline.BuildAssetBundles(streamingAssetsPath, BuildAssetBundleOptions.None,
+
+            var outputPath = $"{streamingAssetsPath}/{buildTarget}";
+            
+            if (!Directory.Exists(outputPath))
+            {
+                Directory.CreateDirectory(outputPath);
+            }
+            
+            BuildPipeline.BuildAssetBundles(outputPath, BuildAssetBundleOptions.None,
                 buildTarget);
         }
 

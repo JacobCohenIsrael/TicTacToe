@@ -1,13 +1,13 @@
 ManifestFileVersion: 0
-CRC: 1109212757
+CRC: 828320847
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: test.xsprite
+      Name: default.xsprite
       Dependencies: {}
     Info_1:
-      Name: test.osprite
+      Name: default.osprite
       Dependencies: {}
     Info_2:
-      Name: test.backgroundsprite
+      Name: default.backgroundsprite
       Dependencies: {}
