@@ -40,7 +40,7 @@ namespace Project.TicTacToe.Mark
             if (!markView.isMarked) {
                 markView.SetMark(currentMarkType);
                 _marksCount++ ;
-                bool won = CheckIfWin () ;
+                var won = CheckIfWin () ;
                 if (won) {
                     gameOverEvent.Raise();
                     return;
@@ -62,13 +62,13 @@ namespace Project.TicTacToe.Mark
         
         private bool CheckIfWin () {
             return
-                AreBoxesMatched (0, 1, 2) || AreBoxesMatched (3, 4, 5) || AreBoxesMatched (6, 7, 8) ||
-                AreBoxesMatched (0, 3, 6) || AreBoxesMatched (1, 4, 7) || AreBoxesMatched (2, 5, 8) ||
-                AreBoxesMatched (0, 4, 8) || AreBoxesMatched (2, 4, 6);
+                IsMatched (0, 1, 2) || IsMatched (3, 4, 5) || IsMatched (6, 7, 8) ||
+                IsMatched (0, 3, 6) || IsMatched (1, 4, 7) || IsMatched (2, 5, 8) ||
+                IsMatched (0, 4, 8) || IsMatched (2, 4, 6);
 
         }
 
-        private bool AreBoxesMatched (int i, int j, int k) {
+        private bool IsMatched (int i, int j, int k) {
             var markType = currentMarkType ;
             var matched = marks [i].markType == markType && marks [j].markType == markType && marks [k].markType == markType;
 
