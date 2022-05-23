@@ -31,8 +31,10 @@ namespace Project.TicTacToe.Editor
 
         private void BuildBundle(string name, Sprite xSprite, Sprite oSprite, Sprite backgroundSprite)
         {
-            BuildPipeline.BuildAssetBundles(name, BuildAssetBundleOptions.None,
-                EditorUserBuildSettings.activeBuildTarget);
+            AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(xSprite)).SetAssetBundleNameAndVariant(name, "xSprite");
+            AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(oSprite)).SetAssetBundleNameAndVariant(name, "oSprite");
+            AssetImporter.GetAtPath(AssetDatabase.GetAssetPath(backgroundSprite)).SetAssetBundleNameAndVariant(name, "backgroundSprite");
+            // BuildPipeline ??
         }
 
         private Sprite CreateSpritePicker(string labelText, Sprite currentValue)

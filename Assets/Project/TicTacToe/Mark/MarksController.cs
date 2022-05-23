@@ -48,7 +48,8 @@ namespace Project.TicTacToe.Mark
                 
                 if (_marksCount == 9) 
                 {
-                    return ;
+                    gameOverEvent.Raise();
+                    return;
                 }
                 
                 SwitchPlayer();
